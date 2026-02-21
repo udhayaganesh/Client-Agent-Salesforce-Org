@@ -40,7 +40,6 @@ public without sharing class AI_JobApply {
             system.debug('###############'+e);
             response.message = 'Job not applied, contact HR for more details' ;
         }
-        
         outputs.add(response);
         return outputs;
     }
