@@ -36,8 +36,7 @@ public without sharing class AI_JobApply {
             
             response.message = result ;
             
-            
-            
+                        
         }
         catch(Exception e)
         {
