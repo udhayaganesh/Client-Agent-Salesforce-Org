@@ -30,7 +30,6 @@ public without sharing class AI_JobApply {
                 {
                     result = result + j.Contact_Details__c + '\',\'';
                 }
-      
             response.isSuccess = false;
             
             response.message = result ;
