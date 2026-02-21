@@ -13,6 +13,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+        node-version: 18
+
+      - name: Install dependencies
+        run: |
+        npm init -y
+        npm install axios
+
       - name: Checkout repo
         uses: actions/checkout@v4
         with:
