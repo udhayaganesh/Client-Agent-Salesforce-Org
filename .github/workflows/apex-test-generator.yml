@@ -5,6 +5,9 @@ on:
     paths:
       - "force-app/main/default/classes/*.cls"
 
+permissions:
+  contents: write
+
 jobs:
   generate-test:
     runs-on: ubuntu-latest
@@ -12,24 +15,23 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          persist-credentials: true
 
-      - name: Setup Node.js
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 18
 
-      - name: Install dependencies
-        run: npm install axios fs
-
-      - name: Generate Apex Test Class
+      - name: Generate Apex Test
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: node scripts/generateApexTest.js
 
-      - name: Commit generated test class
+      - name: Commit & Push
         run: |
-          git config user.name "apex-test-bot"
-          git config user.email "bot@github.com"
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git add force-app/main/default/classes/*Test.cls
           git commit -m "Auto-generate Apex test class"
           git push
